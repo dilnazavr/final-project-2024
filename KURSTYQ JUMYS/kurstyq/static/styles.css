@@ -1,0 +1,187 @@
+/* Общие стили для страницы */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Цвет фона страницы */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Высота 100% экрана */
+}
+
+/* Контейнер для центрации контента */
+.container {
+    text-align: center;
+    width: 80%;
+    max-width: 600px; /* Максимальная ширина контейнера */
+    margin: auto; /* Центрирование контейнера */
+    background: #fff; /* Цвет фона контейнера */
+    padding: 20px; /* Внутренние отступы */
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Тень для контейнера */
+}
+
+/* Стили заголовков */
+h1, h2, h3 {
+    color: #004e98; /* Цвет заголовков */
+}
+
+h3 {
+    margin-top: 20px; /* Отступ сверху для заголовков третьего уровня */
+}
+
+/* Стили для параграфов */
+p {
+    margin: 20px 0; /* Отступы сверху и снизу */
+    color: #333; /* Цвет текста параграфов */
+}
+
+/* Контейнер для кнопок */
+.button-container {
+    display: flex;
+    justify-content: center; /* Центрирование кнопок */
+    gap: 20px; /* Промежуток между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+/* Стили для кнопок ролей */
+.role-button {
+    display: inline-block;
+    background-color: #ff6700; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста кнопки */
+    padding: 10px 20px; /* Внутренние отступы */
+    border-radius: 5px; /* Закругленные углы */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-size: 18px; /* Размер шрифта */
+    font-weight: bold; /* Жирный текст */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Плавные переходы */
+}
+
+.role-button:hover {
+    background-color: #e05e00; /* Цвет фона при наведении */
+    transform: scale(1.1); /* Увеличение кнопки при наведении */
+}
+
+/* Стили для полей ввода */
+input[type="text"], input[type="password"] {
+    width: 100%; /* Занимает всю доступную ширину родителя */
+    padding: 10px; /* Внутренние отступы */
+    margin: 10px 0; /* Отступы сверху и снизу */
+    border: 1px solid #ccc; /* Цвет границы */
+    border-radius: 5px; /* Закругленные углы */
+    font-size: 18px; /* Размер шрифта */
+    text-align: left; /* Выравнивание текста по левому краю */
+    box-sizing: border-box; /* Включает отступы и границы в общую ширину */
+}
+
+/* Стили для кнопок */
+button {
+    background: #ff6700; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста */
+    border: none; /* Убираем границы */
+    padding: 10px 15px; /* Внутренние отступы */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Курсор при наведении */
+    font-size: 18px; /* Размер шрифта */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Плавные переходы */
+}
+
+button:hover {
+    background: #e05e00; /* Цвет фона при наведении */
+    transform: scale(1.05); /* Увеличение кнопки при наведении */
+}
+
+/* Анимация для кнопок */
+@keyframes buttonClick {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1); /* Увеличение кнопки */
+    }
+    100% {
+        transform: scale(1); /* Возвращение к исходному размеру */
+    }
+}
+
+button:active {
+    animation: buttonClick 0.2s ease-in-out; /* Анимация при нажатии */
+}
+
+/* Стили для секций */
+.section {
+    background-color: #fff; /* Цвет фона секции */
+    padding: 15px; /* Внутренние отступы */
+    margin-top: 20px; /* Отступ сверху */
+    border-radius: 5px; /* Закругленные углы */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для секций */
+}
+
+/* Стили для навигации */
+nav {
+    margin-bottom: 20px; /* Отступ снизу для навигации */
+}
+
+nav ul {
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем отступы */
+}
+
+nav ul li {
+    display: inline; /* Горизонтальное расположение элементов списка */
+    margin-right: 15px; /* Отступ между элементами списка */
+}
+
+nav ul li a {
+    color: #004e98; /* Цвет ссылок навигации */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-weight: bold; /* Жирный текст */
+    transition: color 0.3s ease; /* Плавный переход цвета */
+}
+
+nav ul li a:hover {
+    color: #ff6700; /* Цвет ссылок при наведении */
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+    .container {
+        width: 95%; /* Уменьшение ширины на мобильных устройствах */
+    }
+
+    h1, h2, h3 {
+        font-size: 1.5em; /* Уменьшение размера шрифта для заголовков на мобильных устройствах */
+    }
+
+    button, .role-button {
+        font-size: 16px; /* Уменьшение размера шрифта для кнопок на мобильных устройствах */
+    }
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table th {
+    background-color: #004e98; /* Ваш основной цвет */
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}

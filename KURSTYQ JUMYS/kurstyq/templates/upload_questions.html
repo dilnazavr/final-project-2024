@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка вопросов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            text-align: center;
+            color: #004e98;
+            margin-bottom: 20px;
+        }
+        .file-upload {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            padding: 10px;
+        }
+        button {
+            background-color: #004e98;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #003366;
+        }
+        .error-message {
+            color: red;
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .success-message {
+            color: green;
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <button type="button" onclick="goBack()" style="width: 100%; padding: 10px; background-color: #004e98; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">Артқа</button>
+
+    <div class="container">
+        <h1 class="title">Тест сұрақтарын файл арқылы жүктеу</h1>
+
+        {% if get_flashed_messages(with_categories=true) %}
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+                {% if category == 'error' %}
+                    <div class="error-message">{{ message }}</div>
+                {% elif category == 'success' %}
+                    <div class="success-message">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <form action="{{ url_for('upload_questions', test_id=test_id) }}" method="post" enctype="multipart/form-data">
+            <div class="file-upload">
+                <label for="file">Сұрақтары бар файлды таңдаңыз:</label>
+                <input type="file" name="file" id="file" accept=".txt">
+            </div>
+            <button type="submit">Сұрақтарды енгізу</button>
+        </form>
+    </div>
+    
+<script>
+    // Функция для возврата на предыдущую страницу
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+</body>
+</html>

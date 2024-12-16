@@ -1,0 +1,48 @@
+{% extends "tbase.html" %}
+
+{% block content %}
+<div class="profile-container">
+    <h1>Профиль</h1>
+    {% if teacher %}
+        <p><strong>Аты:</strong> {{ teacher.name }}</p>
+        <p><strong>Жөні:</strong> {{ teacher.surname }}</p>
+        <p><strong>E-mail:</strong> {{ teacher.email }}</p>
+        
+        <!-- Кнопка для редактирования профиля -->
+        <a href="{{ url_for('edit_profile') }}" class="btn-edit-profile">Мәліметтерді өзгерту</a>
+    {% else %}
+        <p>Жоқ</p>
+    {% endif %}
+</div>
+
+<style>
+    .profile-container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .btn-edit-profile {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #ff6a00;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .btn-edit-profile:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "tbase.html" %}
+{% block title %}Студенттерді басқару{% endblock %}
+{% block content %}
+<form method="POST" action="{{ url_for('add_test') }}" style="max-width: 600px; margin: auto; padding: 20px; background-color: #f4f4f9; border-radius: 8px;">
+    <div style="margin-bottom: 15px;">
+        <label for="title" style="font-weight: bold; display: block; margin-bottom: 5px;">Тест атауы:</label>
+        <input type="text" id="title" name="title" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+    </div>
+    <div style="margin-bottom: 15px;">
+        <label for="description" style="font-weight: bold; display: block; margin-bottom: 5px;">Сипаттама:</label>
+        <textarea id="description" name="description" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;"></textarea>
+    </div>
+    <div style="margin-bottom: 15px;">
+        <label for="time_limit" style="font-weight: bold; display: block; margin-bottom: 5px;">Уақыт шектеуі (минуттар):</label>
+        <input type="number" id="time_limit" name="time_limit" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+    </div>
+    <div style="margin-bottom: 15px;">
+        <label for="status" style="font-weight: bold; display: block; margin-bottom: 5px;">Жағдайы:</label>
+        <select id="status" name="status" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+            <option value="active">Белсенді</option>
+            <option value="inactive">Белсенді емес</option>
+        </select>
+    </div>
+    <div style="margin-bottom: 15px;">
+        <label for="groups" style="font-weight: bold; display: block; margin-bottom: 5px;">Топтар:</label>
+        <select id="groups" name="groups" multiple style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+            {% for group in groups %}
+                <option value="{{ group.id }}">{{ group.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" style="background-color: #ff6700; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">
+        Тест қосу
+    </button>
+</form>
+{% endblock %}

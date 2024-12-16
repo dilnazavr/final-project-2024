@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #004e98;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+.test-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.test-list li {
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ff6700;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #c94e00;
+}
+
+.flash-error {
+    color: red;
+}

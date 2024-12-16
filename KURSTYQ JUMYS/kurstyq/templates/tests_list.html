@@ -1,0 +1,33 @@
+{% extends "tbase.html" %}
+
+{% block content %}
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead style="background-color: #004e98; color: white;">
+        <tr>
+            <th style="padding: 10px; text-align: left;">Тест атауы</th>
+            <th style="padding: 10px; text-align: left;">Сипаттама</th>
+            <th style="padding: 10px; text-align: left;">Әрекеттер</th>
+            <th style="padding: 10px; text-align: left;">Өшіру</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for test in tests %}
+        <tr style="border-bottom: 1px solid #ccc;">
+            <td style="padding: 10px;">{{ test.title }}</td>
+            <td style="padding: 10px;">{{ test.description or 'Сипаттама жоқ' }}</td>
+            <td style="padding: 10px;">
+                <a href="{{ url_for('upload_questions', test_id=test.id) }}" style="color: #ff6700; text-decoration: none;">Сұрақтарды жүктеу</a>
+                <a href="{{ url_for('add_question_manual', test_id=test.id) }}" style="color: #ff6700; text-decoration: none; margin-left: 10px;">Сұрақ қосу</a>
+            </td>
+            <td style="padding: 10px;">
+                <form action="{{ url_for('delete_test', test_id=test.id) }}" method="POST" style="display: inline;">
+                    <button type="submit" style="background-color: #ff6700; color: white; border: none; padding: 5px 10px; cursor: pointer;">
+                        Өшіру
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

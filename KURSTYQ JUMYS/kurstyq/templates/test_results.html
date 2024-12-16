@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест нәтижесі</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <script>
+        // Блокируем возврат на страницу результата через кнопку "Назад"
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Тест нәтижесі "{{ test.title }}"</h1>
+        <p class="result-summary">Сіздің нәтижеңіз: <span class="score">{{ score }}</span> ішінен <span class="total">{{ total }}</span></p>
+
+        {% if score / total >= 0.5 %}
+            <p class="congratulations">Құттықтаймыз! Сіз тесті өтті!</p>
+        {% else %}
+            <p class="failure">Өкінішке орай, сіз тестті өтпедіңіз. Қайта көріңіз.</p>
+        {% endif %}
+
+        <div class="buttons">
+            <a href="{{ url_for('choose_test', student_id=session['student_id']) }}" class="btn btn-primary">Тесттер тізіміне оралу</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Нәтижелерді тексеру үшін біздің <a href="https://t.me/exam_platform2024bot" target="_blank">Telegram бот</a>.</p>
+    </footer>
+</body>
+</html>

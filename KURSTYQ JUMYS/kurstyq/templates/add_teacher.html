@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Оқытушы қосу{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Жаңа оқытушы қосу</h1>
+    <form method="POST" action="{{ url_for('add_teacher') }}">
+        <div class="mb-3">
+            <label for="teacherUsername" class="form-label">Логин</label>
+            <input type="text" class="form-control" id="teacherUsername" name="username" placeholder="Логин енгізіңіз" required>
+        </div>
+        <div class="mb-3">
+            <label for="teacherPassword" class="form-label">Құпиясөз</label>
+            <input type="password" class="form-control" id="teacherPassword" name="password" placeholder="Құпиясөз енгізіңіз" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Қосу</button>
+    </form>
+</div>
+{% endblock %}

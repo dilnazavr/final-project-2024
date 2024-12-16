@@ -1,0 +1,17 @@
+<!-- add_teacher_file.html -->
+{% extends 'base.html' %}
+
+{% block title %}Оқытушыны файл арқылы қосу{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Оқытушыны файл арқылы қосу</h1>
+    <form action="/add_teachers_file" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="teacherFile" class="form-label">Тексттік файлды таңдау</label>
+            <input class="form-control" type="file" id="teacherFile" name="teacherFile" accept=".txt" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Еңгізу</button>
+    </form>
+</div>
+{% endblock %}

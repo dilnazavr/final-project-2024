@@ -1,0 +1,103 @@
+<button type="button" onclick="goBack()" style="width: 100%; padding: 10px; background-color: #004e98; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">Артқа</button>
+
+<h1 style="text-align: center; color: #004e98;">Сұрақтарды қолмен қосу</h1>
+
+<script>
+    // Функция для возврата на предыдущую страницу
+    function goBack() {
+        window.history.back();
+    }
+</script>
+<!-- Форма для добавления вопросов -->
+<form id="questionForm" action="{{ url_for('add_question_manual', test_id=test_id) }}" method="POST" style="max-width: 600px; margin: 20px auto; padding: 20px; background-color: #ebebeb; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+    <div id="questionsContainer">
+        <!-- Первый вопрос -->
+        <div class="question" style="margin-bottom: 15px;" data-index="1">
+            <label for="question_text_1" style="display: block; font-weight: bold; margin-bottom: 5px;">Сұрақ мәтіні:</label>
+            <textarea name="question_text_1" rows="4" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+
+            <div style="margin-top: 10px;">
+                <label for="answer_a_1" style="display: block; font-weight: bold; margin-bottom: 5px;">Жауап A:</label>
+                <input type="text" name="answer_a_1" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+
+            <div style="margin-top: 10px;">
+                <label for="answer_b_1" style="display: block; font-weight: bold; margin-bottom: 5px;">Жауап B:</label>
+                <input type="text" name="answer_b_1" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+
+            <div style="margin-top: 10px;">
+                <label for="answer_c_1" style="display: block; font-weight: bold; margin-bottom: 5px;">Жауап C:</label>
+                <input type="text" name="answer_c_1" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+
+            <div style="margin-top: 10px;">
+                <label for="answer_d_1" style="display: block; font-weight: bold; margin-bottom: 5px;">Жауап D:</label>
+                <input type="text" name="answer_d_1" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+
+            <div style="margin-top: 10px;">
+                <label for="correct_answer_1" style="display: block; font-weight: bold; margin-bottom: 5px;">Дұрыс жауап:</label>
+                <div>
+                    <label><input type="radio" name="correct_answer_1" value="a" required> A</label>
+                    <label><input type="radio" name="correct_answer_1" value="b" required> B</label>
+                    <label><input type="radio" name="correct_answer_1" value="c" required> C</label>
+                    <label><input type="radio" name="correct_answer_1" value="d" required> D</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" onclick="addQuestion()" style="width: 100%; padding: 10px; background-color: #ff6700; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">Тағы сұрақ қосу</button>
+    <button type="submit" style="width: 100%; padding: 10px; background-color: #004e98; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">Қосу</button>
+</form>
+
+<script>
+    // Функция для добавления нового вопроса
+ // Функция для добавления нового вопроса
+function addQuestion() {
+    var container = document.getElementById('questionsContainer');
+    var index = container.children.length + 1;
+    var newQuestion = document.createElement('div');
+    newQuestion.classList.add('question');
+    newQuestion.setAttribute('data-index', index);
+    newQuestion.innerHTML = `
+        <div style="margin-bottom: 15px;">
+            <label for="question_text_${index}" style="display: block; font-weight: bold; margin-bottom: 5px;">Сұрақ мәтіні:</label>
+            <textarea name="question_text_${index}" rows="4" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+        </div>
+
+        <div style="margin-top: 10px;">
+            <label for="answer_a_${index}" style="display: block; font-weight: bold; margin-bottom: 5px;">Жауап A:</label>
+            <input type="text" name="answer_a_${index}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+
+        <div style="margin-top: 10px;">
+            <label for="answer_b_${index}" style="display: block; font-weight: bold; margin-bottom: 5px;">Жауап B:</label>
+            <input type="text" name="answer_b_${index}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+
+        <div style="margin-top: 10px;">
+            <label for="answer_c_${index}" style="display: block; font-weight: bold; margin-bottom: 5px;">Жауап C:</label>
+            <input type="text" name="answer_c_${index}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+
+        <div style="margin-top: 10px;">
+            <label for="answer_d_${index}" style="display: block; font-weight: bold; margin-bottom: 5px;">Жауап D:</label>
+            <input type="text" name="answer_d_${index}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+
+        <div style="margin-top: 10px;">
+            <label for="correct_answer_${index}" style="display: block; font-weight: bold; margin-bottom: 5px;">Дұрыс жауап:</label>
+            <div>
+                <label><input type="radio" name="correct_answer_${index}" value="a" required> A</label>
+                <label><input type="radio" name="correct_answer_${index}" value="b" required> B</label>
+                <label><input type="radio" name="correct_answer_${index}" value="c" required> C</label>
+                <label><input type="radio" name="correct_answer_${index}" value="d" required> D</label>
+            </div>
+        </div>
+    `;
+    container.appendChild(newQuestion);
+}
+
+</script>

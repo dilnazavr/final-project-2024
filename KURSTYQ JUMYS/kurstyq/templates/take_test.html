@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ test.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .page-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .test-title {
+            text-align: center;
+            color: #004e98;
+        }
+        .test-description {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .timer {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff6700;
+        }
+        .question-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .question-text {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .answer-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #004e98;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background-color: #003366;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <h1 class="test-title">{{ test.title }}</h1>
+        <p class="test-description">{{ test.description }}</p>
+        <div id="timer" class="timer" data-time="{{ test.time_limit }}"></div>
+
+        <form id="test-form" method="post" action="{{ url_for('take_test', student_id=student_id, test_id=test.id) }}">
+            {% for question in questions %}
+            <div class="question-container">
+                <h3 class="question-text">Сұрақ {{ loop.index }}: {{ question.question_text }}</h3>
+                {% for answer in question.answers %}
+                    <label class="answer-label">
+                        <input type="radio" name="question_{{ question.id }}" value="{{ answer.answer_text }}">
+                        {{ answer.answer_text }}
+                    </label>
+                {% endfor %}
+            </div>
+        {% endfor %}
+}
+        
+            <button id="submit" class="submit-button" type="submit">Аяқтау</button>
+        </form>
+    </div>
+    <script>
+        let timeLeft = parseInt(document.getElementById('timer').getAttribute('data-time')) * 60;
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById('test-form').submit();
+            }
+            timeLeft--;
+        }
+        const timerInterval = setInterval(updateTimer, 1000);
+        document.getElementById('submit').addEventListener('click', function (event) {
+            if (!confirm('Вы уверены, что хотите завершить тест?')) {
+                event.preventDefault();
+            }
+        });
+        document.addEventListener('keydown', function(event) {
+    if (event.key === 'PrintScreen') {
+        event.preventDefault();
+    }
+});
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+        document.addEventListener('selectstart', function(event) {
+            event.preventDefault();
+        });
+        document.addEventListener('dragstart', function(event) {
+            event.preventDefault();
+        });
+        document.addEventListener('keydown', function(event) {
+            if ((event.ctrlKey && (event.key === 'C' || event.key === 'V' || event.key === 'X' || event.key === 'A')) ||
+                (event.metaKey && (event.key === 'C' || event.key === 'V' || event.key === 'X' || event.key === 'A'))) {
+                event.preventDefault();
+            }
+        });
+        document.addEventListener('copy', function(event) {
+            event.preventDefault();
+        });
+        document.addEventListener('paste', function(event) {
+            event.preventDefault();
+        });
+        document.querySelectorAll('*').forEach(element => {
+            element.addEventListener('contextmenu', (event) => {
+                event.preventDefault();
+            });
+        });
+    </script>
+</body>
+</html>

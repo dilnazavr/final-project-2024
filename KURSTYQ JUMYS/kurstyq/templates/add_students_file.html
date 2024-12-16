@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h1>Білім алушыны файлмен қосу</h1>
+    <form action="{{ url_for('add_students_file') }}" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">   
+            <label for="file" class="form-label">Тексттік файлды таңдаңыз</label>
+            <input class="form-control" type="file" name="stud">
+            <input type="submit" value="Загрузить" class="btn btn-primary">
+        </div> 
+</div>
+</form>
+{% endblock %}

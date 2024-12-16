@@ -1,0 +1,32 @@
+{% extends 'tbase.html' %}
+
+{% block title %}Тесттердің нәтижелері{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Тесттердің нәтижелері</h1>
+    
+    {% if test_results %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Білім алушының аты</th>
+                <th>Тесттің атауы</th>
+                <th>Жинаған ұпайлары</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result, student, test in test_results %}
+                <tr>
+                    <td>{{ student.first_name }} {{ student.last_name }}</td>
+                    <td>{{ test.title }}</td>
+                    <td>{{ result.score }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Тест нәтижелері жоқ.</p>
+    {% endif %}
+</div>
+{% endblock %}

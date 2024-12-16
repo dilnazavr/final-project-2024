@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>Название теста</th>
+        <th>Группы</th>
+    </tr>
+    {% for test in tests %}
+    <tr>
+        <td>{{ test.title }}</td>
+        <td>
+            {% for tg in test.test_groups %}
+                {{ tg.group.name }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>

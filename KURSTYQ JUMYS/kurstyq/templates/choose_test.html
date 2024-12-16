@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Қолжетімді тесттер</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .page-container {
+            width: 70%;
+            max-width: 900px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #004e98;
+        }
+
+        h1.student-name {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .group-id {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .test-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .test-table th, .test-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .test-table th {
+            background-color: #004e98;
+            color: white;
+        }
+
+        .test-table td {
+            background-color: #f9f9f9;
+        }
+
+        .status-completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-not-completed {
+            color: red;
+            font-weight: bold;
+        }
+
+        .test-link {
+            font-size: 18px;
+            color: #004e98;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .test-link:hover {
+            color: #ff6700;
+        }
+
+        .no-tests {
+            font-size: 18px;
+            color: #c0c0c0;
+        }
+
+        .disabled-link {
+            color: #c0c0c0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <h1 class="student-name">{{ student.first_name }} {{ student.last_name }} білім алушысына арналған тесттер тізімі</h1>
+        <p class="group-id">Топ: {{ student.group_id }}</p>
+        <h2>Қолжетімді тесттер:</h2>
+        {% if tests %}
+            <table class="test-table">
+                <thead>
+                    <tr>
+                        <th>Тест атауы</th>
+                        <th>Өткізу</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for test in tests %}
+                        <tr>
+                            <td><a href="{{ url_for('start_test', test_id=test.id) }}" class="test-link">{{ test.title }}</a></td>
+
+                            <td>
+                                {% set result = get_student_test_result(student.id, test.id) %}
+                                {% if not result or result.completed == False %}
+                                    <a href="{{ url_for('take_test', test_id=test.id, student_id=student.id) }}" class="test-link">Тесті бастау</a>
+                                {% else %}
+                                    <span class="status-completed">Өтті</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-tests">Қолжетімді тесттер жоқ</p>
+        {% endif %}
+    </div>
+</body>
+</html>

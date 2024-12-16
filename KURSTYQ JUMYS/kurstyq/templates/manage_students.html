@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Студенттерді басқару{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Білім алушыларды басқару</h1>
+
+    <form method="get" action="{{ url_for('manage_students') }}" class="mb-3">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <select id="field" name="field" class="form-select">
+                    <option value="all" {% if search_field == 'all' %}selected{% endif %}>Барлық өрістер</option>
+                    <option value="iin" {% if search_field == 'iin' %}selected{% endif %}>ЖСН</option>
+                    <option value="first_name" {% if search_field == 'first_name' %}selected{% endif %}>Аты</option>
+                    <option value="last_name" {% if search_field == 'last_name' %}selected{% endif %}>Тегі</option>
+                    <option value="group_name" {% if search_field == 'group_name' %}selected{% endif %}>Тобы</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="search" class="form-control" placeholder="Іздеу деректерін енгізіңіз" value="{{ search_query }}">
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary w-100">Іздеу</button>
+            </div>
+        </div>
+    </form>
+
+    {% if students %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ЖСН</th>
+                <th>Аты</th>
+                <th>Тегі</th>
+                <th>Тобы</th>
+                <th>Әрекеттер</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <form method="post" action="{{ url_for('update_student', student_id=student[0]) }}">
+                    <td><input type="text" name="iin" class="form-control" value="{{ student[1] }}"></td>
+                    <td><input type="text" name="first_name" class="form-control" value="{{ student[2] }}"></td>
+                    <td><input type="text" name="last_name" class="form-control" value="{{ student[3] }}"></td>
+                    <td><input type="text" name="group_name" class="form-control" value="{{ student[4] }}"></td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-success btn-sm">Жаңарту</button>
+                            <form method="post" action="{{ url_for('delete_student', student_id=student[0]) }}" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">Жою</button>
+                            </form>
+                        </div>
+                    </td>
+                </form>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Білім алушылар табылмады.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+<h1>Білім алушылар тізімі</h1>
+
+<form method="get" action="{{ url_for('students_list') }}">
+    <label for="field">Іздеу:</label>
+    <select id="field" name="field">
+        <option value="all" {% if search_field == 'all' %}selected{% endif %}>Барлық өрістер</option>
+        <option value="iin" {% if search_field == 'iin' %}selected{% endif %}>ЖСН</option>
+        <option value="first_name" {% if search_field == 'first_name' %}selected{% endif %}>Аты</option>
+        <option value="last_name" {% if search_field == 'last_name' %}selected{% endif %}>Тегі</option>
+        <option value="group_name" {% if search_field == 'group_name' %}selected{% endif %}>Тобы</option>
+    </select>
+
+    <input type="text" name="search"  placeholder="Іздеу деректерін енгізіңіз" value="{{ search_query }}">
+    <button type="submit" class="btn-primary">Іздеу</button>
+</form>
+
+{% if students %}
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ЖСН</th>
+                <th>Аты</th>
+                <th>Тегі</th>
+                <th>Тобы</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student[0] }}</td>
+                    <td>{{ student[1] }}</td>
+                    <td>{{ student[2] }}</td>
+                    <td>{{ student[3] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+    <p>Көрсетілетін студенттер жоқ.</p>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+<!-- sidebar.html -->
+<aside id="sidebar" class="js-sidebar">
+    <div class="h-100">
+        <div class="sidebar-logo">
+            <a href="#"><img src="static/images/logo.png" alt="CodzSword Logo" width="150"></a>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="sidebar-item">
+                <a href="/tprofile" class="sidebar-link">
+                    <i class="fa-regular fa-user pe-2"></i>
+                    Профиль
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed" data-bs-target="#teachers" data-bs-toggle="collapse"
+                    aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
+                    Тесттер беті
+                </a>
+                <ul id="teachers" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="/add_test" class="sidebar-link">Жаңадан қосу</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/tests_list" class="sidebar-link">Тесттерді өзгерту</a>
+                    </li>
+
+                </ul>
+            </li>
+            
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed" data-bs-target="#exams" data-bs-toggle="collapse"
+                    aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
+                    Нәтижелер
+                </a>
+                <ul id="exams" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="/exam_list" class="sidebar-link">Тест нәтижелері</a>
+                    </li>
+                   
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>

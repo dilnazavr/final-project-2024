@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Оқытушы ретінде кіру</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Оқытушы ретінде кіру</h1>
+        <form method="POST">
+            <label for="username">Логин:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Құпиясөз:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Кіру</button>
+        </form>
+        
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function() {
+            console.log('Форма отправлена'); // Проверка, что форма отправляется
+        });
+    </script>
+</body>
+</html>

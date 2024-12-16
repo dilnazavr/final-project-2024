@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Қосымша сұрақтар</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='adminstyle.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Тест сұрақтарын қосу</h1>
+
+        <form method="POST" action="{{ url_for('add_questions') }}">
+            {{ form.hidden_tag() }} <!-- For CSRF token -->
+
+            <!-- Question Field -->
+            <div class="form-group">
+                <label for="question">Сұрақ:</label>
+                {{ form.question(class="form-control", placeholder="Сұрақты енгізіңіз") }}
+            </div>
+
+            <!-- Answer Fields -->
+            <div class="form-group">
+                <label for="answer_1">Жауап 1:</label>
+                {{ form.answer_1(class="form-control", placeholder="Жауап 1") }}
+            </div>
+
+            <div class="form-group">
+                <label for="answer_2">Жауап 2:</label>
+                {{ form.answer_2(class="form-control", placeholder="Жауап 2") }}
+            </div>
+
+            <div class="form-group">
+                <label for="answer_3">Жауап 3:</label>
+                {{ form.answer_3(class="form-control", placeholder="Жауап 3") }}
+            </div>
+
+            <div class="form-group">
+                <label for="answer_4">Жауап 4:</label>
+                {{ form.answer_4(class="form-control", placeholder="Жауап 4") }}
+            </div>
+
+            <!-- Correct Answer -->
+            <div class="form-group">
+                <label for="correct_answer">Дұрыс жауап:</label>
+                {{ form.correct_answer(class="form-control", placeholder="Дұрыс жауапты таңдаңыз") }}
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

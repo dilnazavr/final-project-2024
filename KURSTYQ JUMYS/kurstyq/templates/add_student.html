@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Жаңа білім алушы енгізу</h1>
+    <form method="POST" action="{{ url_for('add_student') }}">
+        <div class="mb-3">
+            <label for="iin" class="form-label">ЖСН:</label>
+            <input type="text" name="iin" class="form-control" id="iin" required>
+        </div>
+        <div class="mb-3">
+            <label for="first_name" class="form-label">Аты:</label>
+            <input type="text" name="first_name" class="form-control" id="first_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Тегі:</label>
+            <input type="text" name="last_name" class="form-control" id="last_name" required>
+        </div>
+    
+    <div class="mb-3">
+        <label for="group_name" class="form-label">Группа:</label>
+        <input type="text" id="group_name" class="form-control" name="group_name" required>
+
+    </div>
+        <button type="submit" class="btn btn-primary">Енгізу</button>
+    </form>
+</div>
+</div>
+{% endblock %}
