@@ -1,36 +1,33 @@
 import os
 from flask import Flask, request, redirect, url_for, render_template, flash, session
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-import psycopg2
-import logging
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
-from sqlalchemy.orm import relationship
 from datetime import datetime
 from forms import TestForm, QuestionForm
-import os
 
-
-
+# Create the upload folder if it doesn't exist
 UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)  
 
+# Flask app configuration
 app = Flask(__name__)
-app.secret_key = '22112005'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', '22112005')
+app.secret_key = os.getenv('SECRET_KEY', '22112005')  # Default secret key for development
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql://postgres:22112005@localhost/exam_platform')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SESSION_PROTECTION'] = 'strong'
+app.config['SESSION_COOKIE_NAME'] = 'session'
+
+# Initialize the database and login manager
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
-app.config['SESSION_PROTECTION'] = 'strong'
-app.config['SESSION_COOKIE_NAME'] = 'session'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Database connection example (optional)
+# conn = psycopg2.connect(DATABASE_URL)  # You may not need this if you're using SQLAlchemy
 
 
-
-DATABASE_URL = "postgresql://postgres:22112005@localhost/exam_platform"
-conn = "postgresql://postgres:22112005@localhost/exam_platform"
 
 
 ALLOWED_EXTENSIONS = {'txt'}
