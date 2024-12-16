@@ -13,6 +13,9 @@ from forms import TestForm, QuestionForm
 UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
+logging.basicConfig(level=logging.DEBUG)
+logging.debug(f"Database URL: {os.getenv('DATABASE_URL')}")
+
 
 # Создание приложения Flask
 app = Flask(__name__)
