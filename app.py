@@ -19,7 +19,7 @@ app = Flask(__name__)
 app.secret_key = '22112005'
 
 # Подключение к базе данных PostgreSQL
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql://postgres:22112005@localhost/exam_platform')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql://exam_platform_qx8r_user:uzeHdkHBrCQEnUZBB5RVyxq3lrHnPR25@dpg-ctg9iabgbbvc738nulmg-a/exam_platform_qx8r')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', '22112005')
 
 # Инициализация SQLAlchemy
