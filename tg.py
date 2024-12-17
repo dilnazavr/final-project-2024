@@ -1,8 +1,9 @@
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackContext
 import psycopg2 
+import os
 TOKEN = "7986810100:AAF-4hKkmVTKqYzyk_DX9ZH6Qz4K1rUSp1M"
-DATABASE_URL = "postgresql://postgres:22112005@localhost/exam_platform"
+DATABASE_URL = os.getenv('DATABASE_URL', "postgresql://exam_platform_qx8r_user:uzeHdkHBrCQEnUZBB5RVyxq3lrHnPR25@dpg-ctg9iabgbbvc738nulmg-a/exam_platform_qx8r")
 
 
 async def start(update: Update, context: CallbackContext):
