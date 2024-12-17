@@ -38,7 +38,7 @@ app.config['SESSION_COOKIE_NAME'] = 'session'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Если нужно использовать переменную DATABASE_URL, она должна быть указана в окружении
-DATABASE_URL = os.getenv('DATABASE_URL', "postgresql://postgres:22112005@localhost/exam_platform")
+DATABASE_URL = os.getenv('DATABASE_URL', "postgresql://exam_platform_qx8r_user:uzeHdkHBrCQEnUZBB5RVyxq3lrHnPR25@dpg-ctg9iabgbbvc738nulmg-a/exam_platform_qx8r")
 
 
 
